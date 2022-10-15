@@ -9,35 +9,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
-@Table(name="produto")
+@Table(name = "produto")
 public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name="preco_unitario")
+    @Column(name = "preco_unitario")
     private BigDecimal preco;
+
     public BigDecimal getPreco() {
         return preco;
     }
+
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
+
     public String getDescricao() {
         return descricao;
     }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }

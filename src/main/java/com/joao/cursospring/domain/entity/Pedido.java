@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,62 +16,33 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.joao.cursospring.domain.enums.StatusPedido;
+
+import lombok.Data;
 
 @Entity
-@Table(name="pedido")
-
+@Table(name = "pedido")
+@Data
 public class Pedido {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="cliente_id") 
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @Column(name="data_pedido")
+    @Column(name = "data_pedido")
     private LocalDate dataPedido;
 
     @Column(name = "total", precision = 20, scale = 2)
     private BigDecimal total;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusPedido status;
+
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
-
-    public List<ItemPedido> getItens() {
-        return itens;
-    }
-    public void setItens(List<ItemPedido> itens) {
-        this.itens = itens;
-    }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    public LocalDate getDataPedido() {
-        return dataPedido;
-    }
-    public void setDataPedido(LocalDate dataPedido) {
-        this.dataPedido = dataPedido;
-    }
-    public BigDecimal getTotal() {
-        return total;
-    }
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-    @Override
-    public String toString() {
-        return "Pedido [dataPedido=" + dataPedido + ", id=" + id + ", total=" + total + "]";
-    }
 }
