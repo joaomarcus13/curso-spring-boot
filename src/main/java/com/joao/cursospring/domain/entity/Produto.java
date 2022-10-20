@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -22,32 +24,11 @@ public class Produto {
     private int id;
 
     @Column(name = "descricao")
+    @NotEmpty(message = "Campo descricao é obrigatorio")
     private String descricao;
 
     @Column(name = "preco_unitario")
+    @NotNull(message = "campo preco obrigatorio")
     private BigDecimal preco;
 
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

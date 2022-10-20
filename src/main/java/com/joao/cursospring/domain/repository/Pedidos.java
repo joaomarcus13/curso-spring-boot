@@ -1,15 +1,14 @@
 package com.joao.cursospring.domain.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.joao.cursospring.domain.entity.Cliente;
 import com.joao.cursospring.domain.entity.Pedido;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 public interface Pedidos extends JpaRepository<Pedido, Integer> {
 
