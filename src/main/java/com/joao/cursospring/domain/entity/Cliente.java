@@ -15,10 +15,16 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "cliente") // caso o nome da tabela seja diferente do nome da entidade
 public class Cliente {
 
@@ -40,48 +46,8 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private Set<Pedido> pedidos;
 
-    public Cliente() {
-    }
-
-    public Cliente(String nome) {
-        this.nome = nome;
-    }
-
-    public Set<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Set<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Cliente(Integer id, String nome) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente{" + "id=" + id + ", nome='" + nome + '\'' + '}';
-    }
-
 }
